@@ -15,15 +15,17 @@ class DetailProvinceListViewModel extends ChangeNotifier {
         await ApiService().fetchDetailByProvince();
     List<Province> listProvince = await ApiService().fetchProvince();
     loadingStatus = LoadingStatus.pending;
-
     notifyListeners();
 
-    this.detailProvinces = listProvince
-        .map((province) => DetailProvinceViewModel(
+    for (var province in listProvince) {
+      if (isProvinceHasData(province, listDetail) != null) {
+        this.detailProvinces.add(DetailProvinceViewModel(
               province: province,
-              listDetail: listDetail,
-            ))
-        .toList();
+              detail: listDetail[isProvinceHasData(province, listDetail)!],
+            ));
+      } else
+        continue;
+    }
 
     if (this.detailProvinces.isEmpty)
       loadingStatus = LoadingStatus.empty;
@@ -32,4 +34,9 @@ class DetailProvinceListViewModel extends ChangeNotifier {
 
     notifyListeners();
   }
+}
+
+int? isProvinceHasData(Province province, List<DetailByProvince> details) {
+  for (int index = 0; index < details.length; index++)
+    if (details[index].hcKey == province.hcKey) return index;
 }

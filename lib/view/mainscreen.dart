@@ -1,6 +1,5 @@
-import 'package:covid19_app/view_model/detail_province_list_viewmodel.dart';
+import 'package:covid19_app/view/widget/table.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -8,25 +7,39 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<DetailProvinceListViewModel>(context, listen: false)
-        .getDetailProvince();
-  }
-
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    var listDetail = Provider.of<DetailProvinceListViewModel>(context);
     return Scaffold(
       appBar: AppBar(),
-      body: ListView.builder(
-          itemCount: listDetail.detailProvinces.length,
-          itemBuilder: (context, index) {
-            return Text(listDetail.detailProvinces[index].provinceName +
-                "             Tổng số ca : " +
-                listDetail.detailProvinces[index].sumOfCase);
-          }),
+      body: DetailTable(),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            print('press');
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            label: "Tổng quan",
+            icon: Icon(
+              Icons.home,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "Thống kê",
+            icon: Icon(
+              Icons.table_chart_sharp,
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "Cài đặt",
+            icon: Icon(
+              Icons.table_chart,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,16 +1,16 @@
 class DetailByProvince {
-  int socakhoi;
-  int socadangdieutri;
-  int socatuvong;
-  String hcKey;
-  int value;
+  int? socakhoi;
+  int? socadangdieutri;
+  int? socatuvong;
+  String? hcKey;
+  int? value;
 
   DetailByProvince(
-      {required this.socakhoi,
-      required this.socadangdieutri,
-      required this.socatuvong,
-      required this.hcKey,
-      required this.value});
+      {this.socakhoi,
+      this.socadangdieutri,
+      this.socatuvong,
+      this.hcKey,
+      this.value});
 
   factory DetailByProvince.fromJson(Map<String, dynamic> json) {
     return DetailByProvince(

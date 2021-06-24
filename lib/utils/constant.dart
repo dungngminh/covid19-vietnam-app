@@ -4,4 +4,6 @@ class Constant {
 
   static const String GET_PROVINCE =
       "https://api.apify.com/v2/key-value-stores/p3nS2Q9TUn6kUOriJ/records/LATEST?fbclid=IwAR33CvaRq7Ejxkw3EQAaSyk7ysj1A2Ylq51nJawqLexE_jSt2J52IbFp5z0";
+
+  static String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 }
