@@ -1,5 +1,6 @@
-import 'package:covid19_app/view/mainscreen.dart';
+import 'package:covid19_app/view/homescreen.dart';
 import 'package:covid19_app/view_model/detail_province_list_viewmodel.dart';
+import 'package:covid19_app/view_model/summary_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,13 +12,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Covid 19 App",
       theme: ThemeData(),
+      debugShowCheckedModeBanner: false,
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider(
             create: (_) => DetailProvinceListViewModel(),
-          )
+          ),
+          ChangeNotifierProvider(
+            create: (_) => SummaryViewModel(),
+          ),
         ],
-        child: MainScreen(),
+        child: HomeScreen(),
       ),
     );
   }

@@ -1,3 +1,4 @@
+
 class Summary {
   String sourceUrl;
   String lastUpdatedAtApify;
@@ -14,4 +15,5 @@ class Summary {
     required this.recovered,
     required this.deceased,
   });
+
 }
